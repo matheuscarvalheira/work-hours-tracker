@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../model/User");
-const Hour = require("../model/Hour"); // Se necessário, importe o modelo de Hour
+const Hour = require("../model/Hour");
 
-// Rota para renderizar o formulário de criação de novo usuário
 router.get("/new", (req, res) => {
   res.render("users/newUser", { title: "Novo Usuário" });
 });
 
-// Rota para listar todos os usuários
 router.get("/", (req, res) => {
   User.findAll((err, users) => {
     if (err) {
@@ -19,7 +17,6 @@ router.get("/", (req, res) => {
   });
 });
 
-// Rota para obter um usuário por ID e mostrar detalhes
 router.get("/:id", (req, res) => {
   const userId = req.params.id;
 
@@ -32,7 +29,6 @@ router.get("/:id", (req, res) => {
       return res.status(404).json({ message: "Usuário não encontrado" });
     }
 
-    // Renderiza a página de detalhes do usuário
     res.render("users/detail", {
       user,
       title: `Detalhes do Usuário - ${user.name}`,
@@ -40,7 +36,6 @@ router.get("/:id", (req, res) => {
   });
 });
 
-// Rota para criar um novo usuário
 router.post("/", (req, res) => {
   const { name, email } = req.body;
 
@@ -53,7 +48,6 @@ router.post("/", (req, res) => {
   });
 });
 
-// Rota para atualizar um usuário por ID
 router.put("/:id", (req, res) => {
   const userId = parseInt(req.params.id);
   const { name, email } = req.body;
@@ -72,7 +66,6 @@ router.put("/:id", (req, res) => {
   });
 });
 
-// Rota para renderizar o formulário de edição de usuário
 router.get("/:id/edit", (req, res) => {
   const userId = parseInt(req.params.id);
   User.findById(userId, (err, user) => {
@@ -90,7 +83,6 @@ router.get("/:id/edit", (req, res) => {
   });
 });
 
-// Rota para deletar um usuário por ID
 router.delete("/:id", (req, res) => {
   const userId = parseInt(req.params.id);
   User.delete(userId, (err) => {
