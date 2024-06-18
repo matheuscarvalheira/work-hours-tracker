@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<h1 class="page-title">Lista de Horas Trabalhadas</h1>
+<div class="hour-list-container">
+  <!-- Tabela para listar horas registradas -->
+  <table class="hour-table">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Hora de Início</th>
+        <th>Hora de Término</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (hours && hours.length > 0) { %> <% hours.forEach(hour => { %>
+      <tr>
+        <td><%= hour.date %></td>
+        <td><%= hour.startTime %></td>
+        <td><%= hour.endTime %></td>
+      </tr>
+      <% }); %> <% } else { %>
+      <tr>
+        <td colspan="3">Nenhuma hora registrada ainda.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<div class="button-group">
+  <a href="/hours/new" class="button">Novo horário</a>
+</div>
+<%- include('../partials/footer') %>

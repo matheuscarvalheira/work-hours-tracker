@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+
+<h1 class="page-title">Lista de Usuários</h1>
+
+<div class="user-list">
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><a href="/users/<%= user.id %>"><%= user.name %></a></td>
+          <td><%= user.email %></td>
+          <td class="action-buttons">
+            <!-- Botão Editar -->
+            <form action="/users/<%= user.id %>/edit" method="GET" style="display: inline;">
+              <button type="submit" class="button">Editar</button>
+            </form>
+            <!-- Botão Deletar -->
+            <button class="button delete-button" onclick="deleteUser('<%= user.id %>')">Deletar</button>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<div class="new-user-button">
+  <a href="/users/new" class="button">Novo Usuário</a>
+</div>
+
+<script>
+  function deleteUser(userId) {
+    if (confirm("Tem certeza que deseja deletar este usuário?")) {
+      fetch(`/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ _method: 'DELETE' })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao deletar usuário');
+        }
+        document.location.reload();
+      })
+      .catch(error => {
+        console.error('Erro ao deletar usuário:', error);
+      });
+    }
+  }
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<div class="user-details">
+  <h1>Detalhes do Usuário</h1>
+  <table class="user-table">
+    <tr>
+      <td><strong>ID:</strong></td>
+      <td><%= user.id %></td>
+    </tr>
+    <tr>
+      <td><strong>Nome:</strong></td>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><%= user.email %></td>
+    </tr>
+  </table>
+  <br />
+  <a href="/users">Voltar à Lista</a>
+  <br />
+  <a href="/hours/<%= user.id %>">Ver Horas Trabalhadas</a>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: 'Login' }) %>
+
+<main class="login-modal">
+  <div class="content">
+    <h1>Login</h1>
+    <form action="/login" method="post">
+      <label for="username">Usuário:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

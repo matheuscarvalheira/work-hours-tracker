@@ -1,0 +1,14 @@
+<%- include('partials/header', { title: 'Aplicação' }) %>
+<main class="main-content">
+  <h1 class="welcome-heading">Bem-vindo, <%= username %>!</h1>
+  <p class="menu-description">
+    Use o menu abaixo para navegar pelas funcionalidades da aplicação.
+  </p>
+  <nav class="menu">
+    <ul>
+      <li><a href="/users">Gerenciar Usuários</a></li>
+      <li><a href="/hours">Registrar Horas Trabalhadas</a></li>
+    </ul>
+  </nav>
+</main>
+<%- include('partials/footer') %>

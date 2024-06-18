@@ -1,0 +1,712 @@
+/* styles.css */
+
+/* Reset básico para garantir consistência */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilização do corpo e fontes */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilização do header */
+.header {
+  background-color: #000000;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  position: relative; /* Garante que o z-index funcione corretamente */
+  z-index: 1; /* Garante que o header esteja abaixo do modal */
+}
+
+.header ul {
+  list-style: none;
+}
+
+.header li {
+  display: inline;
+  margin: 0 15px;
+}
+
+/* Estilização do conteúdo principal */
+.main-content {
+  flex: 1; /* Ocupa o espaço restante entre header e footer */
+  padding: 20px;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-heading {
+  margin-bottom: 20px; /* Adiciona margem inferior */
+}
+
+.menu-description {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px; /* Adiciona margem superior */
+  margin-bottom: 40px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  margin: 0 10px;
+}
+
+.menu a {
+  color: #ff69b4;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #ff69b4;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+  background-color: #ff69b4;
+  color: #fff;
+}
+
+/* Estilização do footer */
+.footer {
+  background-color: #000000;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  position: relative; /* Garante que o z-index funcione corretamente */
+  z-index: 1; /* Garante que o footer esteja abaixo do modal */
+  margin-top: auto; /* Empurra o footer para a parte inferior */
+}
+
+/* Estilização de links */
+a {
+  color: #ff69b4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botões */
+button,
+.button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none; /* Remove a sublinhado dos links */
+  display: inline-block; /* Garante que os links se comportem como botões */
+}
+
+button:hover,
+.button:hover {
+  background-color: #e64a8f;
+}
+
+/* Estilo específico para o modal de login */
+/* Estilo específico para o modal de login */
+.login-modal {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: fixed; /* Fixa o modal na tela */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+  z-index: 2; /* Garante que o modal de login fique sobreposto ao header e footer */
+}
+
+.login-modal .content {
+  background-color: #111;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra ao redor do modal */
+}
+
+.login-modal h1 {
+  text-align: center;
+  margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.login-modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+.login-modal form label {
+  margin-bottom: 5px;
+  text-align: center;
+  display: block;
+}
+
+.login-modal form input[type="text"],
+.login-modal form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #000;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Adiciona borda arredondada aos inputs */
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+}
+
+.login-modal form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px; /* Espaçamento acima do botão */
+}
+
+.login-modal form button:hover {
+  background-color: #e64a8f;
+}
+
+/* Ocultar header quando modal de login está ativo */
+.login-modal ~ .header {
+  display: none;
+}
+
+/* Ocultar footer quando modal de login está ativo */
+.login-modal ~ .footer {
+  display: none;
+}
+
+.page-title {
+  margin-top: 20px; /* Espaço entre o título e o header */
+  margin-left: 10px;
+}
+
+/* Estilo específico para o modal de novo usuário */
+.new-user-modal {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: fixed; /* Fixa o modal na tela */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+  z-index: 2; /* Garante que o modal de novo usuário fique sobreposto ao header e footer */
+}
+
+.new-user-modal .content {
+  background-color: #111;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra ao redor do modal */
+}
+
+.new-user-modal h1 {
+  text-align: center;
+  margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.new-user-modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha os itens à esquerda */
+}
+
+.new-user-modal form label {
+  margin-bottom: 5px;
+  text-align: left; /* Alinha o texto à esquerda */
+  display: block;
+}
+
+.new-user-modal form input[type="text"],
+.new-user-modal form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Adiciona borda arredondada aos inputs */
+}
+
+.new-user-modal form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.new-user-modal form button:hover {
+  background-color: #e64a8f;
+}
+
+/* Estilo da tabela de usuários */
+.user-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #222;
+  color: #fff;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #333;
+}
+
+.user-table td {
+  background-color: #111;
+}
+
+.user-table a {
+  color: #fffeff;
+  text-decoration: none;
+}
+
+.user-table a:hover {
+  text-decoration: underline;
+}
+
+.user-table .action-buttons {
+  white-space: nowrap; /* Evita que os botões quebrem a linha */
+}
+
+/* styles.css */
+
+/* Outros estilos existentes */
+
+.new-user-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espaçamento acima do botão */
+}
+
+.new-user-button a {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none; /* Remove sublinhado de links */
+}
+
+.new-user-button a:hover {
+  background-color: #e64a8f;
+}
+
+.login-modal {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: fixed; /* Fixa o modal na tela */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+  z-index: 2; /* Garante que o modal fique sobreposto ao conteúdo */
+}
+
+.login-modal .content {
+  background-color: #111;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra ao redor do modal */
+}
+
+.login-modal h1 {
+  text-align: center;
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  color: #ff69b4; /* Cor do título */
+}
+
+.login-modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha os itens à esquerda */
+}
+
+.login-modal form label {
+  margin-bottom: 5px;
+  text-align: left; /* Alinha o texto à esquerda */
+  display: block;
+  color: #fff; /* Cor do texto */
+}
+
+.login-modal form input[type="text"],
+.login-modal form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Adiciona borda arredondada aos inputs */
+  color: #fff; /* Cor do texto nos inputs */
+}
+
+.login-modal form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px; /* Espaçamento acima do botão */
+}
+
+.login-modal form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: auto; /* Move o botão para o final do content */
+}
+
+.login-modal .cancel-link {
+  color: #ff69b4;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px; /* Espaçamento acima do link de cancelar */
+}
+
+.login-modal .cancel-link:hover {
+  text-decoration: underline;
+}
+
+/* Adicione este CSS para estilização adicional */
+
+/* Estilo para a lista de horas trabalhadas */
+.hour-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.hour-list li {
+  background-color: #222;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.hour-list li p {
+  margin: 5px 0;
+}
+
+/* Estilo para o formulário de nova hora trabalhada */
+.form-container {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hour-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hour-form label {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.hour-form input[type="text"],
+.hour-form input[type="date"],
+.hour-form input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+}
+
+.hour-form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hour-form button:hover {
+  background-color: #e64a8f;
+}
+
+.new-hour-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.new-hour-modal .content {
+  background-color: #111;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.new-hour-modal h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff69b4;
+}
+
+.new-hour-modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.new-hour-modal form label {
+  margin-bottom: 5px;
+  text-align: left;
+  display: block;
+  color: #fff;
+}
+
+.new-hour-modal form input[type="text"],
+.new-hour-modal form input[type="date"],
+.new-hour-modal form input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+}
+
+.new-hour-modal form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.new-hour-modal form button:hover {
+  background-color: #e64a8f;
+}
+
+.new-hour-modal .cancel-link {
+  color: #ff69b4;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.new-hour-modal .cancel-link:hover {
+  text-decoration: underline;
+}
+
+.form-container {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hour-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinha os itens ao centro */
+}
+
+.hour-form label {
+  color: #fff;
+  margin-bottom: 5px;
+  text-align: center; /* Alinha o texto ao centro */
+}
+
+.hour-form input[type="text"],
+.hour-form input[type="date"],
+.hour-form input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  text-align: center; /* Centraliza o texto nos inputs */
+}
+
+.hour-form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center; /* Centraliza o texto no botão */
+  display: block; /* Transforma o botão em bloco para centralização */
+  margin: 0 auto; /* Centraliza o botão */
+}
+
+.hour-form button:hover {
+  background-color: #e64a8f;
+}
+
+/* Estilo da tabela de horas registradas */
+.hour-list-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.hour-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #222;
+  color: #fff;
+}
+
+.hour-table th,
+.hour-table td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: center; /* Centraliza o texto nas células */
+}
+
+.hour-table th {
+  background-color: #333;
+}
+
+.hour-table td {
+  background-color: #111;
+}
+
+/* styles.css */
+
+.new-hour-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espaçamento acima do botão */
+}
+
+.new-hour-button a {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none; /* Remove sublinhado de links */
+}
+
+.new-hour-button a:hover {
+  background-color: #e64a8f;
+}
+
+.button-group {
+  text-align: center; /* Centraliza o conteúdo horizontalmente */
+  margin-top: 10px; /* Espaço acima do botão */
+}
+
+/* Estilos para a página de detalhes do usuário */
+.user-details {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-details h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; /* Cor do título */
+}
+
+.user-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #222; /* Cor de fundo da tabela */
+  border-radius: 5px;
+  overflow: hidden; /* Esconde as bordas arredondadas dos cantos */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para destacar */
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #444; /* Cor da borda inferior */
+  color: #fff; /* Cor do texto */
+}
+
+.user-table th {
+  background-color: #333; /* Cor de fundo do cabeçalho */
+}
+
+.user-table td {
+  background-color: #111; /* Cor de fundo das células */
+}
+
+.user-details a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #ff69b4;
+}
+
+.user-details a:hover {
+  text-decoration: underline;
+  color: #e64a8f;
+}
