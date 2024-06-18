@@ -1,27 +1,97 @@
-// userController.js
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
+const User = require("../model/User");
+
 const userController = {
-  login: (req, res) => {
-    res.render("login", { title: "Login" });
+  newUser: (req, res) => {
+    res.render("users/newUser", { title: "Novo Usuário" });
   },
 
-  register: (req, res) => {
-    res.render("register", { title: "Register" });
+  listUsers: (req, res) => {
+    User.findAll((err, users) => {
+      if (err) {
+        console.error("Erro ao listar usuários:", err);
+        return res.status(500).json({ message: "Erro ao listar usuários" });
+      }
+      res.render("users/list", { title: "Lista de Usuários", users });
+    });
   },
 
-  createUser: async (req, res) => {
-    const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+  userDetails: (req, res) => {
+    const userId = req.params.id;
 
-    const user = new User({ username, password: hashedPassword });
-    await user.save();
+    User.findById(userId, (err, user) => {
+      if (err) {
+        console.error(`Erro ao buscar usuário com ID ${userId}:`, err);
+        return res.status(500).json({ message: "Erro ao buscar usuário" });
+      }
+      if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado" });
+      }
 
-    res.redirect("/login");
+      res.render("users/detail", {
+        user,
+        title: `Detalhes do Usuário - ${user.name}`,
+      });
+    });
   },
 
-  profile: (req, res) => {
-    res.render("profile", { title: "Profile", user: req.user });
+  createUser: (req, res) => {
+    const { name, email } = req.body;
+
+    User.create(name, email, (err, newUser) => {
+      if (err) {
+        console.error("Erro ao criar usuário:", err);
+        return res.status(500).json({ message: "Erro ao criar usuário" });
+      }
+      res.redirect("/users");
+    });
+  },
+
+  editUser: (req, res) => {
+    const userId = parseInt(req.params.id);
+
+    User.findById(userId, (err, user) => {
+      if (err) {
+        console.error(
+          `Erro ao buscar usuário com ID ${userId} para edição:`,
+          err
+        );
+        return res.status(500).json({ message: "Erro ao buscar usuário" });
+      }
+      if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado" });
+      }
+      res.render("users/edit", { title: "Editar Usuário", user });
+    });
+  },
+
+  updateUser: (req, res) => {
+    const userId = parseInt(req.params.id);
+    const { name, email } = req.body;
+
+    User.update(userId, name, email, (err, updatedUser) => {
+      if (err) {
+        console.error(`Erro ao atualizar usuário com ID ${userId}:`, err);
+        return res.status(500).json({ message: "Erro ao atualizar usuário" });
+      }
+      if (!updatedUser) {
+        return res.status(404).json({ message: "Usuário não encontrado" });
+      }
+      res
+        .status(200)
+        .json({ message: "Usuário atualizado com sucesso", user: updatedUser });
+    });
+  },
+
+  deleteUser: (req, res) => {
+    const userId = parseInt(req.params.id);
+
+    User.delete(userId, (err) => {
+      if (err) {
+        console.error(`Erro ao deletar usuário com ID ${userId}:`, err);
+        return res.status(500).json({ message: "Erro ao deletar usuário" });
+      }
+      res.status(204).send();
+    });
   },
 };
 
